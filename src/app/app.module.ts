@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 //import des routes
 import {Routes, RouterModule} from '@angular/router';
+import { EditRecetteComponent } from './edit-recette/edit-recette.component';
 
 
 
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    RecetteViewComponent
+    RecetteViewComponent,
+    EditRecetteComponent
   ],
   imports: [
     BrowserModule,
@@ -34,4 +36,4 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

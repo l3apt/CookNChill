@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recette-view',
@@ -6,11 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recette-view.component.scss']
 })
 export class RecetteViewComponent implements OnInit {
+  
+	@Input() recetteName : string;
+  @Input() recetteDificulty: number;
+  @Input() recetteTime: string ;
+  @Input() recetteAddDate: string;
+ 
+  /*recetteName: string ;
+	recetteDificulty: number ;
+	recetteTime: string ;
+	recetteAddDate: string ;
+*/
 
-	recetteName: string = 'Lasagnes';
-	recetteDificulty: number = 2;
-	recetteTime: string = '00:30';
-	recetteAddDate: string = '09/04/20';
 
   constructor() { }
 

@@ -12,5 +12,16 @@
         </div>
     </div>
 </nav>
-<app-recette-view></app-recette-view>
+
+ <ul class="list-group">
+
+ 	<app-recette-view *ngFor ='let recette of recettes'
+                              [recetteName] = "recette.recetteName"
+                              [recetteDificulty] = "recette.recetteDificulty"
+                              [recetteTime] = "recette.recetteTime"
+                              [recetteAddDate] = "recette.recetteAddDate">
+                              <p>recette: {{recetteName}}</p>
+
+    </app-recette-view>
+  </ul>
 
