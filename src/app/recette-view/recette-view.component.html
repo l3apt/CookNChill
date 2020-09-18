@@ -1,10 +1,7 @@
-<li class = "list-group-item">
-	<h3> {{recetteName}} </h3>
-	<h4>
-		<p>Dificulté de réalisation: {{recetteDificulty}} casseroles</p>
-		<p>Temps de réalisation: {{recetteTime}}</p>
-		<p>Date d'ajout: {{recetteAddDate}}</p>
-	</h4>
-	Recette :<input type="text" class="form-control" [(ngModel)] = "recetteName">
-
-</li>
+<app-recette *ngFor ='let recette of recettes'
+                              [recetteName] = "recette.recetteName"
+                              [recetteDificulty] = "recette.recetteDificulty"
+                              [recetteTime] = "recette.recetteTime"
+                              [recetteAddDate] = "recette.recetteAddDate">
+                              <p>recette: {{recetteName}}</p>
+</app-recette>

@@ -1,1 +1,29 @@
-<p>edit-recette works!</p>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<form (ngSubmit) = "onSubmit(f)" #f="ngForm">
+			<!-- Nom -->
+			<div class="form-group">
+				<label for ="name">
+					Nom de la recette
+				</label>
+				<input type="text" name="id" class="form-control" name= "Name" ngModel required>
+			</div>
+			<!-- Difficulté -->
+			<div class="form-group">
+				<label for ="Dificulty">
+					Difficulté de réalisation (sur 5)
+				</label>
+				<input type="text" name="Dificulty" class="form-control" name= "Dificulty" ngModel required>
+			</div>
+			<!-- Temps  -->
+			<div class="form-group">
+				<label for ="Temps">
+					Temps de réalisation 
+				</label>
+				<input type="time" name="Temps" class="form-control" name= "Temps" ngModel required>
+			</div>
+
+			<button type="submit" class="btn btn-primary" [disabled] = "f.invalid">Enregistrer</button>
+		</form>
+	</div>
+</div>

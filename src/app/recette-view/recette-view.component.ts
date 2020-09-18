@@ -1,27 +1,32 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { RecetteService } from '../services/recette.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recette-view',
   templateUrl: './recette-view.component.html',
   styleUrls: ['./recette-view.component.scss']
 })
-export class RecetteViewComponent implements OnInit {
-  
-	@Input() recetteName : string;
-  @Input() recetteDificulty: number;
-  @Input() recetteTime: string ;
-  @Input() recetteAddDate: string;
- 
-  /*recetteName: string ;
-	recetteDificulty: number ;
-	recetteTime: string ;
-	recetteAddDate: string ;
-*/
+export class RecetteViewComponent {
+   
+   recettes: any[];
+   recetteSubscription: Subscription;
 
-
-  constructor() { }
+   constructor(private recetteService: RecetteService,private router: Router) { }
 
   ngOnInit(): void {
+    this.recetteSubscription = this.recetteService.recetteSubject.subscribe(
+      (recettes: any[]) => {
+        this.recettes = recettes;
+      }
+    );
+    this.recetteService.emitRecetteSubject();
   }
 
+
+  title = 'CookNChill';
+ 
+
+  
 }

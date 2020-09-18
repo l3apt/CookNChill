@@ -4,6 +4,9 @@
         <ul class = 'nav navbar-nav'>
             <li>
                 <a routerLinkActive = 'active' routerLink='recette-view'>Accueil</a>
+             </li>
+             <li>
+                <a routerLinkActive = 'active' routerLink='edit'>Ajouter une recette</a>
             </li>
 
         </ul>
@@ -13,15 +16,10 @@
     </div>
 </nav>
 
- <ul class="list-group">
+<div class="container">
+    <div class="row">
 
- 	<app-recette-view *ngFor ='let recette of recettes'
-                              [recetteName] = "recette.recetteName"
-                              [recetteDificulty] = "recette.recetteDificulty"
-                              [recetteTime] = "recette.recetteTime"
-                              [recetteAddDate] = "recette.recetteAddDate">
-                              <p>recette: {{recetteName}}</p>
-
-    </app-recette-view>
-  </ul>
-
+        <router-outlet></router-outlet>   
+    
+    </div>
+</div>
