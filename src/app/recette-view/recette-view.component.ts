@@ -13,7 +13,8 @@ export class RecetteViewComponent {
    recettes: any[];
    recetteSubscription: Subscription;
 
-   constructor(private recetteService: RecetteService,private router: Router) { }
+   constructor(private recetteService: RecetteService,
+               private router: Router) { }
 
   ngOnInit(): void {
     this.recetteSubscription = this.recetteService.recetteSubject.subscribe(

@@ -15,6 +15,7 @@ export class RecetteComponent implements OnInit {
   @Input() recetteDificulty: number;
   @Input() recetteTime: string ;
   @Input() recetteAddDate: string;
+  @Input() listeIngredients: any[];
 
   constructor(private recetteService: RecetteService) { }
 

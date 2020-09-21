@@ -15,7 +15,8 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
  recettes: any[];
  recetteSubscription: Subscription;
 
-  constructor(private recetteService: RecetteService,private router: Router) { }
+  constructor(private recetteService: RecetteService,
+              private router: Router) { }
 
   ngOnInit(): void {
   	this.recetteSubscription = this.recetteService.recetteSubject.subscribe(
@@ -38,7 +39,7 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
   	const recetteTime = form.value['Temps'];
   	const recetteAddDate = new Date().toDateString();
 
-  	this.recetteService.addRecette(recetteName,recetteDificulty,recetteTime,recetteAddDate);
+  	this.recetteService.addRecette(recetteName,recetteDificulty,recetteTime,recetteAddDate,null);
   	this.router.navigate(['/recette-view']);
 
 
