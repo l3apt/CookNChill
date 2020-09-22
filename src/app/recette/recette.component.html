@@ -5,8 +5,17 @@
 		<p>Temps de réalisation: {{recetteTime}}</p>
 		<p>Date d'ajout: {{recetteAddDate}}</p>
 		<p>Ingrédients: </p>
-		<span *ngFor ="let Ingredients of listeIngredients"> 
-		{{ Ingredients.quantity }}{{ Ingredients.unitIngredient }} {{ Ingredients.nameIngredient }}  - </span>
+		<ul>
+			<li *ngFor ="let ingredients of Ingredients"> 
+				{{ ingredients.quantity }} {{ ingredients.unitIngredient }} {{ ingredients.nameIngredient }}
+			</li>
+		</ul>
+		<p>Recette: </p>
+		<ul>
+			<li *ngFor ="let Instruction of listeInstructions"> 
+				{{ Instruction.step }}: {{ Instruction.instruction }}
+			</li>
+		</ul>
 	</h4>
 	Recette :<input type="text" class="form-control" [(ngModel)] = "recetteName">
 

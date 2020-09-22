@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { RecetteComponent } from './recette/recette.component';
 import { RecetteViewComponent } from './recette-view/recette-view.component';
 import { EditRecetteComponent } from './edit-recette/edit-recette.component';
+
+//import formulaire
 import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 //import des routes
 import {Routes, RouterModule} from '@angular/router';
@@ -27,7 +30,8 @@ import {RecetteService} from './services/recette.service';
   imports: [
     AppRoutingModule,
     FormsModule,   
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecetteService

@@ -4,6 +4,11 @@ import { RecetteService } from '../services/recette.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import { Recette } from '../models/Recette.model';
+import { Ingredient } from '../models/Ingredient.model';
 
 @Component({
   selector: 'app-edit-recette',
@@ -14,8 +19,10 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
 
  recettes: any[];
  recetteSubscription: Subscription;
+ recetteForm: FormGroup;
 
   constructor(private recetteService: RecetteService,
+              private formBuilder: FormBuilder,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -25,24 +32,100 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
       }
     );
     this.recetteService.emitRecetteSubject();
+
+    //init du formulaire 
+    this.initForm();
   }
+
+  //init champs du formulaire 
+   initForm() {
+    this.recetteForm = this.formBuilder.group({
+      recetteName: ['', Validators.required],
+      recetteDificulty: ['', Validators.required],
+      recetteTime: ['', Validators.required],
+      nameIngredients: this.formBuilder.array([]),
+      QuantityIngredients: this.formBuilder.array([]),
+      UnitIngredients: this.formBuilder.array([]),
+      listeInstructions: this.formBuilder.array([])
+    });
+  }
+
 
   ngOnDestroy() {
     this.recetteSubscription.unsubscribe();
   }
 
+// METHODE FORM TEMPLATE
+/*
   onSubmit(form: NgForm){
   	console.log(form.value);
-
   	const recetteName = form.value['Name'];
   	const recetteDificulty = form.value['Dificulty'];
   	const recetteTime = form.value['Temps'];
   	const recetteAddDate = new Date().toDateString();
 
-  	this.recetteService.addRecette(recetteName,recetteDificulty,recetteTime,recetteAddDate,null);
-  	this.router.navigate(['/recette-view']);
+  	//this.recetteService.addRecette(recetteName,recetteDificulty,recetteTime,recetteAddDate,null,null);
+    this.router.navigate(['/recette-view']);
+  }
+*/
+  //METHODE REACTIVE
+
+    getIngredientsName(): FormArray {
+    return this.recetteForm.get('nameIngredients') as FormArray;
+  }
+
+   getIngredientsQuantity(): FormArray {
+    return this.recetteForm.get('QuantityIngredients') as FormArray;
+  }
+
+  getIngredientsUnit(): FormArray {
+    return this.recetteForm.get('UnitIngredients') as FormArray;
+  }
+
+  onAddIngredients() {
+    const newIngredientQuantityControl = this.formBuilder.control(null, Validators.required);
+    this.getIngredientsQuantity().push(newIngredientQuantityControl);
+    const newIngredientNameControl = this.formBuilder.control(null, Validators.required);
+    this.getIngredientsName().push(newIngredientNameControl);
+    const newIngredientUnitControl = this.formBuilder.control(null,null);
+    this.getIngredientsUnit().push(newIngredientUnitControl);
+  }
 
 
+  onSubmit(){
+    const formValue = this.recetteForm.value;
+   
+   // traitement liste des ingrédients
+    const Ingredients = [];
+
+    if (formValue['nameIngredients']) {
+        for (let i = 0; i < formValue['nameIngredients'].length; i++){
+          const newIngredient = {
+          quantity : formValue['QuantityIngredients'][i],
+          unitIngredient : formValue['UnitIngredients'][i],
+          nameIngredient : formValue['nameIngredients'][i]};
+
+           Ingredients.push(newIngredient);
+        }
+           
+        } 
+    else{}
+
+    
+
+    const newRecette = new Recette(
+        0,
+        formValue['recetteName'],
+        formValue['recetteDificulty'],
+        formValue['recetteTime'],
+        new Date().toDateString(),
+        Ingredients,
+        []
+      );
+
+
+    this.recetteService.addRecette(newRecette);
+    this.router.navigate(['/recette-view']);
   }
 
 
