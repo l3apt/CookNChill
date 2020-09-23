@@ -43,10 +43,12 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
       recetteName: ['', Validators.required],
       recetteDificulty: ['', Validators.required],
       recetteTime: ['', Validators.required],
+      nbPersonne: ['', Validators.required],
+      category: ['', Validators.required],
       nameIngredients: this.formBuilder.array([]),
       QuantityIngredients: this.formBuilder.array([]),
       UnitIngredients: this.formBuilder.array([]),
-      listeInstructions: this.formBuilder.array([])
+      instructions: this.formBuilder.array([])
     });
   }
 
@@ -55,27 +57,15 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
     this.recetteSubscription.unsubscribe();
   }
 
-// METHODE FORM TEMPLATE
-/*
-  onSubmit(form: NgForm){
-  	console.log(form.value);
-  	const recetteName = form.value['Name'];
-  	const recetteDificulty = form.value['Dificulty'];
-  	const recetteTime = form.value['Temps'];
-  	const recetteAddDate = new Date().toDateString();
+    //----- METHODE REACTIVE ------
 
-  	//this.recetteService.addRecette(recetteName,recetteDificulty,recetteTime,recetteAddDate,null,null);
-    this.router.navigate(['/recette-view']);
-  }
-*/
-  //METHODE REACTIVE
-
-    getIngredientsName(): FormArray {
+  //  ---   GESTION FORMULAIRE INGREDIENTS   ---
+  getIngredientsName(): FormArray {
     return this.recetteForm.get('nameIngredients') as FormArray;
   }
 
-   getIngredientsQuantity(): FormArray {
-    return this.recetteForm.get('QuantityIngredients') as FormArray;
+  getIngredientsQuantity(): FormArray {
+   return this.recetteForm.get('QuantityIngredients') as FormArray;
   }
 
   getIngredientsUnit(): FormArray {
@@ -92,10 +82,26 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
   }
 
 
+
+  //  ---  GESTION FORMULAIRE INSTRUCTIONS   ---
+  getInstructions(): FormArray {
+    return this.recetteForm.get('instructions') as FormArray;
+  }
+
+  onAddInstructions() {
+    const newInstructionControl = this.formBuilder.control(null, Validators.required);
+    this.getInstructions().push(newInstructionControl);
+  }
+
+
+
+
+
   onSubmit(){
     const formValue = this.recetteForm.value;
-   
-   // traitement liste des ingrédients
+
+
+     // traitement liste des ingrédients
     const Ingredients = [];
 
     if (formValue['nameIngredients']) {
@@ -111,19 +117,39 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
         } 
     else{}
 
-    
+      // traitement liste instruction
+    const Instructions = [];
 
+    if (formValue['instructions']) {
+        for (let i = 0; i < formValue['instructions'].length; i++){
+          const newInstruction = {
+          detailInstruction : formValue['instructions'][i],
+          step : [i]
+          };
+
+           Instructions.push(newInstruction);
+          }
+           
+        } 
+    else{}
+      
+
+
+
+ 
     const newRecette = new Recette(
         0,
         formValue['recetteName'],
+        formValue['category'],
         formValue['recetteDificulty'],
         formValue['recetteTime'],
         new Date().toDateString(),
+        formValue['nbPersonne'],
         Ingredients,
-        []
+        Instructions
       );
 
-
+     
     this.recetteService.addRecette(newRecette);
     this.router.navigate(['/recette-view']);
   }

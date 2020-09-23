@@ -1,9 +1,11 @@
 <app-recette *ngFor ='let recette of recettes'
                               [recetteName] = "recette.recetteName"
+                              [recetteCategory] = "recette.recetteCategory"
                               [recetteDificulty] = "recette.recetteDificulty"
                               [recetteTime] = "recette.recetteTime"
                               [recetteAddDate] = "recette.recetteAddDate"
+                              [nbPersonne] = "recette.nbPersonne"
                               [Ingredients] = "recette.Ingredients"
-                              [listeInstructions] = "recette.listeInstructions">
+                              [Instructions] = "recette.Instructions">
                               <p>recette: {{recetteName}}</p>
 </app-recette>

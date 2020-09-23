@@ -12,11 +12,13 @@ export class RecetteComponent implements OnInit {
 
   @Input() id : number;
   @Input() recetteName : string;
+  @Input() recetteCategory: string;
   @Input() recetteDificulty: number;
   @Input() recetteTime: string ;
   @Input() recetteAddDate: string;
+  @Input() nbPersonne: string;
   @Input() Ingredients: any[];
-  @Input() listeInstructions: any[];
+  @Input() Instructions: any[];
 
   constructor(private recetteService: RecetteService) { }
 

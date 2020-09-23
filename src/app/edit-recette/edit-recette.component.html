@@ -7,8 +7,28 @@
       <input type="text" id="recetteName" class="form-control" formControlName="recetteName">
     </div>
     <div class="form-group">
+      <label for="category">Catégorie de la recette</label>
+      <select id="category" class="form-control" formControlName="category">
+        <option value="Plat">Plat</option>
+        <option value="Patisserie">Patisserie</option>
+        <option value="Apéritif">Apéritif</option>
+      </select>
+    </div>
+    <!--
+    <div class="form-group">
       <label for="recetteDificulty">Difficulté de la recette</label>
       <input type="text" id="recetteDificulty" class="form-control" formControlName="recetteDificulty">
+    </div>
+  -->
+    <div class="form-group">
+      <label for="recetteDificulty">Difficulté de la recette (sur 5)</label>
+      <select id="recetteDificulty" class="form-control" formControlName="recetteDificulty">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
     </div>
     <div class="form-group">
 				<label for ="Temps">
@@ -16,8 +36,31 @@
 				</label>
 				<input type="time" name="Temps" class="form-control" formControlName= "recetteTime" >
 	</div>
+  <!--
+  <div class="form-group">
+        <label for ="nbPersonne">
+          Nombre de personnes 
+        </label>
+        <input type="number" min = "1" name="nbPersonnes" class="form-control" formControlName= "nbPersonne" >
+  </div>
+-->
+  <div class="form-group">
+      <label for="nbPersonne">Nombre de personnes</label>
+      <select id="nbPersonne" class="form-control" formControlName="nbPersonne">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+    </div>
 
-    <!--FormArray -->
+    <!--FormArray INGREDIENTS -->
     <div class = "liste-ingredient">
       <div class = "champ-ingredient">
          <h4>Ingrédients</h4>
@@ -53,6 +96,32 @@
     </button>
     </div>
 
+<!--FormArray INSTRUCTION -->
+    <div class = "liste-ingredient">
+      <div class = "champ-ingredient">
+         <h4>Etape</h4>
+         <h4>Instruction</h4>
+      </div>
+      
+      
+       
+       <div formArrayName="instructions">
+        
+          <div class="form-group" *ngFor="let instructionControl of getInstructions().controls; let i = index">
+          <div class = "champ-ingredient">
+           {{ i }} 
+           <input type="text" class="form-control" [formControlName]="i">
+           </div>
+          </div>
+
+      
+
+
+      </div>
+    <button type="button" class="btn btn-success" (click)="onAddInstructions()">
+      Ajouter une instruction
+    </button>
+    </div>
     
 
     <button type="submit" class="btn btn-primary" [disabled] = "recetteForm.invalid">Soumettre</button>

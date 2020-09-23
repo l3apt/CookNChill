@@ -15,9 +15,11 @@ export class RecetteService{
 	  {
 	    id : 1,
 	    recetteName : 'Lasagnes',
+	    recetteCategory : 'Plat',
 	    recetteDificulty : 2,
 	    recetteTime : '00:15',
 	    recetteAddDate : '08/09/2020',
+	    nbPersonne : 6,
 	    Ingredients: [{
 		    	quantity: 2,
 		    	unitIngredient: '',
@@ -30,23 +32,25 @@ export class RecetteService{
 	    	}
 	    
 	    ],
-	    listeInstructions: [
+	    Instructions: [
 	    	{
 	    		step: 1,
-	    		instruction: 'mettre le four en préchauffe à 200°C'
+	    		detailInstruction: 'mettre le four en préchauffe à 200°C'
 	    	},
 	    	{
 	    		step: 2,
-	    		instruction: 'hacher la viande'
+	    		detailInstruction: 'hacher la viande'
 	    	}
 	    ]
 	  }, 
 	  {
 	    id : 2,
 	    recetteName : 'Millefeuille',
+	    recetteCategory : 'Patisserie',
 	    recetteDificulty : 3,
 	    recetteTime : '00:20',
 	    recetteAddDate : '08/09/2020',
+	    nbPersonne : 4,
 	    Ingredients: [
 	    	{
 		    	quantity: 200,
@@ -54,14 +58,14 @@ export class RecetteService{
 		    	nameIngredient: 'farine'
 	    	}
 	    ],
-	    listeInstructions: [
+	    Instructions: [
 	    	{
 	    		step: 1,
-	    		instruction: 'préparer la crème'
+	    		detailInstruction: 'préparer la crème'
 	    	},
 	    	{
 	    		step: 2,
-	    		instruction: 'réserver la crème au frigo'
+	    		detailInstruction: 'réserver la crème au frigo'
 	    	}
 	    ]
 
@@ -80,41 +84,6 @@ export class RecetteService{
      	 );
    		return recette;
   	}
-
-  	// ajout d'une recette 
-  	/*
-  	addRecette(	recetteName: string, 
-  			    recetteDificulty: number, 
-  			    recetteTime: string, 
-  			    recetteAddDate: string,
-  			    listeIngredients: any[],
-  			    listeInstructions: any[]){
-	   
-
-	    const recetteObject = {
-	     	id : 0,
-		    recetteName : 'Nom de la recette',
-		    recetteDificulty : 0,
-		    recetteTime : '00:00',
-		    recetteAddDate : '08/09/2020',
-		    listeIngredients,
-		    listeInstructions
-	    };
-
-
-	    recetteObject.recetteName = recetteName;
-	    recetteObject.recetteDificulty = recetteDificulty;
-	    recetteObject.recetteTime = recetteTime;
-	    recetteObject.recetteAddDate = recetteAddDate;
-	    recetteObject.id = this.recettes[(this.recettes.length - 1)].id + 1;
-	    recetteObject.listeIngredients = listeIngredients;
-	    recetteObject.listeInstructions = listeInstructions;
-
-    
-    this.recettes.push(recetteObject);
-    this.emitRecetteSubject();
-  }
-  */
 
   addRecette(recette: Recette) {
     recette.recetteAddDate = new Date().toDateString();

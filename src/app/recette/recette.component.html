@@ -1,10 +1,10 @@
 <li class = "list-group-item">
-	<h3> {{recetteName}} </h3>
+	<h3 class = "recette-Name"> {{recetteName}} </h3>
 	<h4>
+		<p>Catégorie: {{recetteCategory}}</p>
 		<p>Dificulté de réalisation: {{recetteDificulty}} casseroles</p>
 		<p>Temps de réalisation: {{recetteTime}}</p>
-		<p>Date d'ajout: {{recetteAddDate}}</p>
-		<p>Ingrédients: </p>
+		<p>Ingrédients pour {{nbPersonne}} personnes: </p>
 		<ul>
 			<li *ngFor ="let ingredients of Ingredients"> 
 				{{ ingredients.quantity }} {{ ingredients.unitIngredient }} {{ ingredients.nameIngredient }}
@@ -12,11 +12,12 @@
 		</ul>
 		<p>Recette: </p>
 		<ul>
-			<li *ngFor ="let Instruction of listeInstructions"> 
-				{{ Instruction.step }}: {{ Instruction.instruction }}
+			<li *ngFor ="let instruction of Instructions"> 
+				{{ instruction.step }}: {{ instruction.detailInstruction }}
 			</li>
 		</ul>
 	</h4>
 	Recette :<input type="text" class="form-control" [(ngModel)] = "recetteName">
+	<p>Date d'ajout: {{recetteAddDate}}</p>
 
 </li>
