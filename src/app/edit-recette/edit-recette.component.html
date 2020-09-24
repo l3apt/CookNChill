@@ -14,12 +14,7 @@
         <option value="Apéritif">Apéritif</option>
       </select>
     </div>
-    <!--
-    <div class="form-group">
-      <label for="recetteDificulty">Difficulté de la recette</label>
-      <input type="text" id="recetteDificulty" class="form-control" formControlName="recetteDificulty">
-    </div>
-  -->
+   
     <div class="form-group">
       <label for="recetteDificulty">Difficulté de la recette (sur 5)</label>
       <select id="recetteDificulty" class="form-control" formControlName="recetteDificulty">
@@ -36,14 +31,7 @@
 				</label>
 				<input type="time" name="Temps" class="form-control" formControlName= "recetteTime" >
 	</div>
-  <!--
-  <div class="form-group">
-        <label for ="nbPersonne">
-          Nombre de personnes 
-        </label>
-        <input type="number" min = "1" name="nbPersonnes" class="form-control" formControlName= "nbPersonne" >
-  </div>
--->
+  
   <div class="form-group">
       <label for="nbPersonne">Nombre de personnes</label>
       <select id="nbPersonne" class="form-control" formControlName="nbPersonne">
@@ -86,7 +74,19 @@
 
         <div formArrayName="UnitIngredients">
           <div class="form-group" *ngFor="let ingredientUnitControl of getIngredientsUnit().controls; let i = index">
-            <input type="text" class="form-control" [formControlName]="i">
+            <select class="form-control" [formControlName]="i">
+              <option value="" selected="yes">Pas d'unité</option>
+              <option value="g">g</option>
+              <option value="L">L</option>
+              <option value="mL">mL</option>
+              <option value="cuillère à soupe">cuillère à soupe</option>
+              <option value="cuillère à café">cuillère à café</option>
+              <option value="pincée">pincée</option>
+              <option value="gousse">gousse</option>
+              <option value="bouquet">bouquet</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+             </select>
           </div>
         </div>
 
@@ -109,13 +109,10 @@
         
           <div class="form-group" *ngFor="let instructionControl of getInstructions().controls; let i = index">
           <div class = "champ-ingredient">
-           {{ i }} 
+           {{ i + 1 }} 
            <input type="text" class="form-control" [formControlName]="i">
            </div>
           </div>
-
-      
-
 
       </div>
     <button type="button" class="btn btn-success" (click)="onAddInstructions()">

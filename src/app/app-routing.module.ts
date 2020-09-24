@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { RecetteComponent } from './recette/recette.component';
 import { RecetteViewComponent } from './recette-view/recette-view.component';
 import { EditRecetteComponent } from './edit-recette/edit-recette.component';
+import { SingleRecetteComponent } from './single-recette/single-recette.component';
 
 const routes: Routes = [
-  { path: 'recette-view',  component: RecetteViewComponent },
-  { path: 'edit',          component: EditRecetteComponent },
-  { path: '',              component: RecetteViewComponent },
+  { path: 'recette-view', 		component: RecetteViewComponent },
+  { path: 'edit',          		component: EditRecetteComponent },
+  { path: ':id',   				component: SingleRecetteComponent },
+  { path: 'recette-view/:id',   component: SingleRecetteComponent },
+  { path: '',             		component: RecetteViewComponent }
 
   /* mettre la redirection à la fin, car ** signifie tous les chemins*/
   //{ path: '**', redirectTo: '/not-found'}

@@ -13,7 +13,7 @@ export class RecetteService{
 	 
 	private recettes: Recette[] =[ 
 	  {
-	    id : 1,
+	    id : 0,
 	    recetteName : 'Lasagnes',
 	    recetteCategory : 'Plat',
 	    recetteDificulty : 2,
@@ -44,7 +44,7 @@ export class RecetteService{
 	    ]
 	  }, 
 	  {
-	    id : 2,
+	    id : 1,
 	    recetteName : 'Millefeuille',
 	    recetteCategory : 'Patisserie',
 	    recetteDificulty : 3,
@@ -92,6 +92,11 @@ export class RecetteService{
 
     this.recettes.push(recette);
     this.emitRecetteSubject();
+  }
+
+  modifyRecette(id: number, modifiedRecette: Recette){
+
+  	this.recettes.splice(id,1,modifiedRecette);
   }
 
 

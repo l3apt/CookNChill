@@ -1,4 +1,5 @@
 <app-recette *ngFor ='let recette of recettes'
+							  [id] = "recette.id"
                               [recetteName] = "recette.recetteName"
                               [recetteCategory] = "recette.recetteCategory"
                               [recetteDificulty] = "recette.recetteDificulty"

@@ -12,11 +12,12 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 
 //import des routes
-import {Routes, RouterModule} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 
 
 // import des services
 import {RecetteService} from './services/recette.service';
+import { SingleRecetteComponent } from './single-recette/single-recette.component';
 
 
 
@@ -25,7 +26,8 @@ import {RecetteService} from './services/recette.service';
     AppComponent,
     RecetteComponent,
     EditRecetteComponent,
-    RecetteViewComponent
+    RecetteViewComponent,
+    SingleRecetteComponent
   ],
   imports: [
     AppRoutingModule,
