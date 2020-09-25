@@ -18,6 +18,7 @@ export class AuthComponent implements OnInit {
     this.authStatus = this.authService.isAuth;
   }
 
+
   onSignIn() {
   
         console.log('Sign in successful!');
