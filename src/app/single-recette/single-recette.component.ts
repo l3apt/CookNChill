@@ -26,6 +26,8 @@ export class SingleRecetteComponent implements OnInit {
  public id = this.route.snapshot.params['id'];
 
 
+
+
  constructor(private recetteService: RecetteService,
  			 private formBuilder: FormBuilder,
   			 private route: ActivatedRoute,
@@ -38,6 +40,7 @@ export class SingleRecetteComponent implements OnInit {
     //récupération de la recette à modifier
     const id = this.route.snapshot.params['id'];
     console.log(id);
+    
     this.recupRecette = this.recetteService.getRecetteById(+id);
     this.recetteModif = this.recupRecette;
 
@@ -47,8 +50,7 @@ export class SingleRecetteComponent implements OnInit {
       }
     );
     this.recetteService.emitRecetteSubject(); 
-
-    
+   
     
     //init du formulaire 
     this.initForm();

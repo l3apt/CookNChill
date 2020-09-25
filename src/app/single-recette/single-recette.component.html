@@ -1,4 +1,4 @@
-
+<div class = "formulaire">
 <h3 class ="recette-Name">Recette</h3>
 <input type="text" class="form-control" [(ngModel)] = "recupRecette.recetteName">
 
@@ -46,38 +46,37 @@
       <label for="ingredients">Ingredients</label>
 		<ul>
 			
-			<li id ="ingredients "*ngFor ="let ingredients of recupRecette.Ingredients"> 
-				
-				<input type="text" name="Temps" class="form-control" 
-						[ngModel] = "ingredients.nameIngredient" >
-				
-			
-				<input type="text" name="Temps" class="form-control" 
-						[ngModel] = "ingredients.quantity">
-			
+			<li  *ngFor ="let ingredients of recupRecette.Ingredients"> 
+				<div id ="ingredients">
+					<input type="text" name="Temps" class="form-control" 
+							[ngModel] = "ingredients.nameIngredient" >
 
-				<select class="form-control" [ngModel] = "ingredients.unitIngredient">
-		              <option value="">Pas d'unité</option>
-		              <option value="g">g</option>
-		              <option value="L">L</option>
-		              <option value="mL">mL</option>
-		              <option value="cuillère à soupe">cuillère à soupe</option>
-		              <option value="cuillère à café">cuillère à café</option>
-		              <option value="pincée">pincée</option>
-		              <option value="gousse">gousse</option>
-		              <option value="bouquet">bouquet</option>
-		              <option value="9">9</option>
-		              <option value="10">10</option>
-           		</select>
-        
+					<input  type="text" name="Temps" class="form-control" 
+							[ngModel] = "ingredients.quantity">
+
+		
+					<select class="form-control" [ngModel] = "ingredients.unitIngredient">
+			              <option value="">Pas d'unité</option>
+			              <option value="g">g</option>
+			              <option value="L">L</option>
+			              <option value="mL">mL</option>
+			              <option value="cuillère à soupe">cuillère à soupe</option>
+			              <option value="cuillère à café">cuillère à café</option>
+			              <option value="pincée">pincée</option>
+			              <option value="gousse">gousse</option>
+			              <option value="bouquet">bouquet</option>
+			              <option value="9">9</option>
+			              <option value="10">10</option>
+	           		</select>
+           		</div>
 			</li>
 
 		</ul>
 		
 		<label for="recette">Recette</label>
 		<ul>
-			<li id = "recette" *ngFor ="let instruction of recupRecette.Instructions"> 
-				{{ instruction.step }}: 
+			<li id = "instructions" *ngFor ="let instruction of recupRecette.Instructions"> 
+				<div>{{ instruction.step }}:</div> 
 				<input type="text" name="Temps" class="form-control" 
 						[ngModel] = "instruction.detailInstruction" >
 			</li>
@@ -85,7 +84,6 @@
 		
 	<button type="button" class="btn btn-primary" (click)="OnModify()">Modifier</button>
 
-
-
+</div>
 
 

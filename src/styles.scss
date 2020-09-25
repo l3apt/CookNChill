@@ -7,6 +7,28 @@
   color: blue;
 }
 
+h1 {
+	margin: auto;
+}
+
+#ingredients {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#instructions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.formulaire {
+	width: 500px;
+	margin: auto;
+}
+
+
 .recette-Name {
 	color: red;
 }

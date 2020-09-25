@@ -17,7 +17,10 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 
 // import des services
 import {RecetteService} from './services/recette.service';
+import {AuthService} from './services/auth.service';
+import {AuthGuard} from './services/auth-guard.service';
 import { SingleRecetteComponent } from './single-recette/single-recette.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -27,7 +30,8 @@ import { SingleRecetteComponent } from './single-recette/single-recette.componen
     RecetteComponent,
     EditRecetteComponent,
     RecetteViewComponent,
-    SingleRecetteComponent
+    SingleRecetteComponent,
+    AuthComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +40,9 @@ import { SingleRecetteComponent } from './single-recette/single-recette.componen
     ReactiveFormsModule
   ],
   providers: [
-    RecetteService
+    RecetteService,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
