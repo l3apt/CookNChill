@@ -13,10 +13,10 @@ import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: 'recette-view', 								              component: RecetteViewComponent },
-  { path: 'edit',                                		    component: EditRecetteComponent },
+  { path: 'edit', canActivate: [AuthGuard],       		  component: EditRecetteComponent },
   { path: 'auth',                                       component: AuthComponent },
-  { path: ':id',                            						component: SingleRecetteComponent },
-  { path: 'recette-view/:id',                           component: SingleRecetteComponent },
+  { path: ':id', canActivate: [AuthGuard],              component: SingleRecetteComponent },
+  { path: 'recette-view/:id', canActivate: [AuthGuard], component: SingleRecetteComponent },
   { path: '',             								              component: RecetteViewComponent }
 
   /* mettre la redirection à la fin, car ** signifie tous les chemins*/

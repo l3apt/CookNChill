@@ -1,3 +1,25 @@
-<h2>Authentification</h2>
-<button class="btn btn-success" *ngIf="!authStatus" (click)="onSignIn()">Se connecter</button>
+<h2 id = "titre-auth">Authentification</h2>
+<strong id = "warning" *ngIf ="this.authService.isReset">
+	Veuillez entrer le bon nom d'utilisateur ou mot de passe
+</strong>
+<form (ngSubmit) = "onSignIn(f)" #f="ngForm" *ngIf="!authStatus">
+	<div class="form-group">
+		<label for ="userName">
+			Utilisateur
+		</label>
+		<input type="text" class="form-control" name= "userName" ngModel required>
+	</div>
+	<div class="form-group">
+		<label for ="userPassword">
+			Mot de Passe
+		</label>
+		<input type="password" class="form-control" name= "userPassword" ngModel required>
+	</div>
+
+	<button type="submit" class="btn btn-primary" *ngIf="!authStatus" [disabled] = "f.invalid">
+		Se connecter
+	</button>
+</form>
+
+
 <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se déconnecter</button>
