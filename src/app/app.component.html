@@ -1,24 +1,46 @@
-<h1>Cook n Chill</h1>
+<section id="header">
+    <div class="container">
 
-<nav class ='navbar navbar-default'> 
-    <div class= 'container-fluid'>
-        <ul class = 'nav navbar-nav'>
-            <li>
-                <a routerLinkActive = 'active' routerLink='recette-view'>Accueil</a>
-             </li>
-             <li>
-                <a routerLinkActive = 'active' routerLink='edit'>Ajouter une recette</a>
-            </li>
-            <li>
-                <a routerLinkActive = 'active' routerLink='auth'>Authentification</a>
-            </li>
+        <!-- Logo -->
+            <h1 id="logo"><img src="/assets/img/logo.png" width = "100 px"/><a href="index.html">Cook n Chill</a></h1>
+            <p>Le site de la gourmandise</p>
+                                   
 
-        </ul>
-        <div class = 'navbar-right'>
-             <p>Le site de la gourmandise</p>   
-        </div>
-    </div>
-</nav>
+        <!-- Nav -->
+        <nav id="nav">
+                                <ul>
+                                    <li><a class="icon solid fa-home" routerLinkActive = 'active' routerLink='recette-view'>
+                                        <span>Accueil</span>
+                                    </a></li>
+                                    <li><a class="icon solid fa-home" routerLinkActive = 'active' routerLink='edit'>
+                                        <span>Ajouter</span>
+                                    </a></li>
+                                    <li><a class="icon solid fa-home" routerLinkActive = 'active' routerLink='auth'>
+                                        <span>Authentification</span>
+                                    </a></li>
+                                    <li>
+                                        <a href="#" class="icon fa-chart-bar"><span>Dropdown</span></a>
+                                        <ul>
+                                            <li><a href="#">Lorem ipsum dolor</a></li>
+                                            <li><a href="#">Magna phasellus</a></li>
+                                            <li><a href="#">Etiam dolore nisl</a></li>
+                                            <li>
+                                                <a href="#">Phasellus consequat</a>
+                                                <ul>
+                                                    <li><a href="#">Magna phasellus</a></li>
+                                                    <li><a href="#">Etiam dolore nisl</a></li>
+                                                    <li><a href="#">Phasellus consequat</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Veroeros feugiat</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+        </nav>
+    </div>       
+</section>
+
+
 
 <div class="container">
     <div class="row">
