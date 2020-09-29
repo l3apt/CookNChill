@@ -17,12 +17,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 #instructions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.footer {
+  text-align: center;
 }
 
 .formulaire {

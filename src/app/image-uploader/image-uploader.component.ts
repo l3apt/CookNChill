@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
 
-const URL = 'src/assets/img/';
+const URL = 'assets/img/';
 
 @Component({
   selector: 'app-image-uploader',
