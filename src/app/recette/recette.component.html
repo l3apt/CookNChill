@@ -1,5 +1,10 @@
 <li class = "list-group-item">
-	<h3 class = "recette-Name"> {{recetteName}} </h3>
+	<!-- <h3 class = "recette-Name"> {{recetteName}} </h3> -->
+	<article class="box excerpt">
+		<header>
+			<span class="date">{{recetteCategory}}</span>
+			<h1 id="logo"> {{ recetteName}} </h1>
+		</header>
 	<h4>
 		<p>Catégorie: {{recetteCategory}}</p>
 		<p>Dificulté de réalisation: {{recetteDificulty}} casseroles</p>
@@ -19,6 +24,6 @@
 	</h4>
 	<a [routerLink] = "[id]"> Modifier </a>  
 	<p>Date d'ajout: {{recetteAddDate}}</p>
-
+	</article>
 
 </li>

@@ -22,7 +22,11 @@ import {AuthGuard} from './services/auth-guard.service';
 import { SingleRecetteComponent } from './single-recette/single-recette.component';
 import { AuthComponent } from './auth/auth.component';
 
+//import du FileUploader
+import { FileUploadModule } from 'ng2-file-upload';
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,13 +35,17 @@ import { AuthComponent } from './auth/auth.component';
     EditRecetteComponent,
     RecetteViewComponent,
     SingleRecetteComponent,
-    AuthComponent
+    AuthComponent,
+    ImageUploaderComponent
   ],
   imports: [
     AppRoutingModule,
     FormsModule,   
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule,
+    HttpClientModule
+
   ],
   providers: [
     RecetteService,
