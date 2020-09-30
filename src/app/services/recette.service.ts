@@ -4,11 +4,21 @@ import { Observable } from 'rxjs/Observable';
 import {RecetteViewComponent} from '../recette-view/recette-view.component';
 import { Recette } from '../models/Recette.model';
 
+import * as firebase from 'firebase';
+
+//import Datasnapshot = firebase.database.DataSnapshot;
+
+import {DataSnapshot} from 'firebase/firebase-database';
+
 @Injectable()
 
 export class RecetteService{
 	
 	recetteSubject = new Subject<any[]>();
+
+	constructor(){
+		this.getRecette();
+	}
 	
 	 
 	private recettes: Recette[] =[ 
@@ -99,6 +109,51 @@ export class RecetteService{
   	this.recettes.splice(id,1,modifiedRecette);
   }
 
+saveRecettes() {
+	firebase.database().ref('/recettes').set(this.recettes);
+}
+
+getRecette() {
+    firebase.database().ref('/recettes')
+      .on('value', (data: DataSnapshot) => {
+          this.recettes = data.val() ? data.val() : [];
+          this.emitRecetteSubject();
+        }
+      );
+  }
+
+  getSingleRecette(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/recettes/' + id).once('value').then(
+          (data: DataSnapshot) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
+  createNewRecette(newRecette: Recette) {
+    this.recettes.push(newRecette);
+    this.saveRecettes();
+    this.emitRecetteSubject();
+  }
+
+  removeRecette(recette: Recette) {
+    const recetteIndexToRemove = this.recettes.findIndex(
+      (recetteEl) => {
+        if(recetteEl === recette) {
+          return true;
+        }
+      }
+    );
+    this.recettes.splice(recetteIndexToRemove, 1);
+    this.saveRecettes();
+    this.emitRecetteSubject();
+  }
 
 
 }
