@@ -97,16 +97,23 @@ export class RecetteService{
 
   addRecette(recette: Recette) {
     recette.recetteAddDate = new Date().toDateString();
-    recette.id = this.recettes[(this.recettes.length - 1)].id + 1;
-
+    if (this.recettes.length == 0) {
+    	recette.id = 0;
+    }
+    else {
+    	recette.id = this.recettes[(this.recettes.length - 1)].id + 1;
+	}
 
     this.recettes.push(recette);
+    this.saveRecettes();
     this.emitRecetteSubject();
   }
 
   modifyRecette(id: number, modifiedRecette: Recette){
 
   	this.recettes.splice(id,1,modifiedRecette);
+  	this.saveRecettes();
+  	this.emitRecetteSubject();
   }
 
 saveRecettes() {
@@ -142,14 +149,14 @@ getRecette() {
     this.emitRecetteSubject();
   }
 
-  removeRecette(recette: Recette) {
-    const recetteIndexToRemove = this.recettes.findIndex(
+  removeRecette(recetteIndexToRemove: number) {
+    /*const recetteIndexToRemove = this.recettes.findIndex(
       (recetteEl) => {
         if(recetteEl === recette) {
           return true;
         }
       }
-    );
+    );*/
     this.recettes.splice(recetteIndexToRemove, 1);
     this.saveRecettes();
     this.emitRecetteSubject();

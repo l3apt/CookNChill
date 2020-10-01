@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RecetteService } from '../services/recette.service';
+import { Recette } from '../models/Recette.model';
 
 @Component({
   selector: 'app-recette',

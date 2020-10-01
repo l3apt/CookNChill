@@ -22,12 +22,13 @@ export class RecetteViewComponent {
         this.recettes = recettes;
       }
     );
+    this.recetteService.getRecette();
     this.recetteService.emitRecetteSubject();
   }
 
 
   title = 'CookNChill';
  
-
+  
   
 }

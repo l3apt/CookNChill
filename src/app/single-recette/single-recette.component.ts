@@ -130,8 +130,15 @@ getIngredientsName(): FormArray {
 
 
   	this.recetteService.modifyRecette(this.id,this.recupRecette);
-  	this.router.navigate(['/recette-view']);
+  	
+    this.router.navigate(['/recette-view']);
 
+  }
+
+  onDeleteRecette(idRecetteToDelete: number){
+
+    this.recetteService.removeRecette(idRecetteToDelete);
+    this.router.navigate(['/recette-view']);
   }
 
 }

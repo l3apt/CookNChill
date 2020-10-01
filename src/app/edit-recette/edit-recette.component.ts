@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { RecetteService } from '../services/recette.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -23,7 +23,8 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
 
   constructor(private recetteService: RecetteService,
               private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   	this.recetteSubscription = this.recetteService.recetteSubject.subscribe(
@@ -32,6 +33,9 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
       }
     );
     this.recetteService.emitRecetteSubject();
+
+
+    
 
     //init du formulaire 
     this.initForm();
@@ -153,6 +157,8 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
     this.recetteService.addRecette(newRecette);
     this.router.navigate(['/recette-view']);
   }
+
+
 
 
 }
