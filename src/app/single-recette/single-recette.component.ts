@@ -25,6 +25,11 @@ export class SingleRecetteComponent implements OnInit {
  recetteForm: FormGroup;
  public id = this.route.snapshot.params['id'];
 
+   // upload de l'image
+  fileIsUploading = false;
+  fileUrl: string;
+  fileUploaded = false;
+
 
 
 
@@ -127,7 +132,9 @@ getIngredientsName(): FormArray {
     this.recupRecette.Ingredients = Ingredients;
     this.recupRecette.Instructions = Instructions;
 	*/
-
+    if(this.fileUrl && this.fileUrl !== '') {
+      this.recupRecette.imgURL = this.fileUrl;
+    }
 
   	this.recetteService.modifyRecette(this.id,this.recupRecette);
   	
@@ -140,5 +147,22 @@ getIngredientsName(): FormArray {
     this.recetteService.removeRecette(idRecetteToDelete);
     this.router.navigate(['/recette-view']);
   }
+
+  // méthodes d'upload de l'image de présentation
+  onUploadFile(file: File) {
+    this.fileIsUploading = true;
+    this.recetteService.uploadFile(file).then(
+      (url: string) => {
+        this.fileUrl = url;
+        this.fileIsUploading = false;
+        this.fileUploaded = true;
+      }
+    );
+}
+
+
+detectFiles(event) {
+    this.onUploadFile(event.target.files[0]);
+}
 
 }

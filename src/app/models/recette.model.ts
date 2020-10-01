@@ -10,6 +10,7 @@ export class Recette {
     public recetteAddDate: string, // date d'ajout de la recette
     public nbPersonne: number, // nombre de personne pour lequel est faite la recette
     public Ingredients?: Ingredient[], // liste des ingrédients
-    public Instructions?: Instruction[] //liste des instructions de la recette
+    public Instructions?: Instruction[], //liste des instructions de la recette
+    public imgURL?: string //URL de la photo de présentation de la recette 
   ) {}
 } 			    

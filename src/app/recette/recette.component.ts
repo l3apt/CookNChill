@@ -20,6 +20,7 @@ export class RecetteComponent implements OnInit {
   @Input() nbPersonne: string;
   @Input() Ingredients: any[];
   @Input() Instructions: any[];
+  @Input() imgURL: string;
 
   constructor(private recetteService: RecetteService) { }
 

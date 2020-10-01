@@ -51,7 +51,8 @@ export class RecetteService{
 	    		step: 2,
 	    		detailInstruction: 'hacher la viande'
 	    	}
-	    ]
+	    ],
+	    imgURL: ''
 	  }, 
 	  {
 	    id : 1,
@@ -77,7 +78,8 @@ export class RecetteService{
 	    		step: 2,
 	    		detailInstruction: 'réserver la crème au frigo'
 	    	}
-	    ]
+	    ],
+	    imgURL: ''
 
 	  } ];
 
@@ -161,6 +163,29 @@ getRecette() {
     this.saveRecettes();
     this.emitRecetteSubject();
   }
+
+//upload de l'image
+  uploadFile(file: File) {
+    return new Promise(
+      (resolve, reject) => {
+        const almostUniqueFileName = Date.now().toString();
+        const upload = firebase.storage().ref()
+          .child('images/' + 'recetteImg_' + almostUniqueFileName).put(file);
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log('Chargement…');
+          },
+          (error) => {
+            console.log('Erreur de chargement ! : ' + error);
+            reject();
+          },
+          () => {
+            resolve(upload.snapshot.ref.getDownloadURL());
+          }
+        );
+      }
+    );
+}
 
 
 }

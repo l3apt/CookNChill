@@ -20,6 +20,14 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
  recettes: any[];
  recetteSubscription: Subscription;
  recetteForm: FormGroup;
+ 
+ 
+
+  // upload de l'image
+  fileIsUploading = false;
+  fileUrl: string;
+  fileUploaded = false;
+
 
   constructor(private recetteService: RecetteService,
               private formBuilder: FormBuilder,
@@ -33,6 +41,7 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
       }
     );
     this.recetteService.emitRecetteSubject();
+
 
 
     
@@ -150,13 +159,34 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
         new Date().toDateString(),
         formValue['nbPersonne'],
         Ingredients,
-        Instructions
+        Instructions,
+        ''
       );
 
+    if(this.fileUrl && this.fileUrl !== '') {
+      newRecette.imgURL = this.fileUrl;
+    }
      
     this.recetteService.addRecette(newRecette);
     this.router.navigate(['/recette-view']);
   }
+
+// méthodes d'upload de l'image de présentation
+  onUploadFile(file: File) {
+    this.fileIsUploading = true;
+    this.recetteService.uploadFile(file).then(
+      (url: string) => {
+        this.fileUrl = url;
+        this.fileIsUploading = false;
+        this.fileUploaded = true;
+      }
+    );
+}
+
+
+detectFiles(event) {
+    this.onUploadFile(event.target.files[0]);
+}
 
 
 

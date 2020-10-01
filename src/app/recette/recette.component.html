@@ -26,10 +26,12 @@
 			</h4>
 
 		</div>
-		
+		<!--
 		<div id = "droite">
 			<img src="/assets/img/img{{id}}.png" width = "300 px"/>
 		</div>
+	-->
+		<img style="max-width:400px;" *ngIf="imgURL" [src]="imgURL">
 	</div>
 	<div class = "footer">
 			<a [routerLink] = "[id]"> Modifier </a>  
