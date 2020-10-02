@@ -31,14 +31,13 @@ export class SingleRecetteComponent implements OnInit {
   fileUploaded = false;
 
 
-
-
  constructor(private recetteService: RecetteService,
  			 private formBuilder: FormBuilder,
   			 private route: ActivatedRoute,
   			 private router: Router) 
  { }
 
+//             ------------------------------------ INITIALISATION ----------------------------------------------
  ngOnInit() {
     //subscribe au service recette 
     
@@ -70,6 +69,8 @@ export class SingleRecetteComponent implements OnInit {
       instructions: this.formBuilder.array([])
     });
   }
+
+//             ------------------------------------ FORMULAIRE ----------------------------------------------
 
 getIngredientsName(): FormArray {
     return this.recetteForm.get('nameIngredients') as FormArray;
@@ -132,6 +133,7 @@ getIngredientsName(): FormArray {
     this.recupRecette.Ingredients = Ingredients;
     this.recupRecette.Instructions = Instructions;
 	*/
+    // MODIF DE LA PHOTO
     if(this.fileUrl && this.fileUrl !== '') {
       this.recupRecette.imgURL = this.fileUrl;
     }
@@ -143,8 +145,13 @@ getIngredientsName(): FormArray {
   }
 
   onDeleteRecette(idRecetteToDelete: number){
+    for (var i=0; i < this.recetteService.recettes.length; i++){
+      if (idRecetteToDelete == this.recetteService.recettes[i].id){
+          var indexRecetteToDelete = i;
+      }
+ }
 
-    this.recetteService.removeRecette(idRecetteToDelete);
+    this.recetteService.removeRecette(indexRecetteToDelete);
     this.router.navigate(['/recette-view']);
   }
 

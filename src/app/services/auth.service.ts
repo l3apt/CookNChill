@@ -1,6 +1,9 @@
 import { User } from '../models/User.model';
 
+
 export class AuthService {
+
+
 
   isAuth: boolean;
   isReset = false; // indique si le formulaire d'authentification a été rechargée suite à un mauvais MdP
@@ -38,12 +41,22 @@ export class AuthService {
     }
  }
 }
+
 public getUserByName(userName: string){
   for (var i=0; i < this.users.length; i++){
     if ((this.users[i].userName == userName) ){
       return this.users[i];
       }
   }
+}
+public getIdUserByName(userName: string){
+  for (var i=0; i < this.users.length; i++){
+    if ((this.users[i].userName == userName) ){
+      return i;
+      }
+  }
+   console.log("index: " + i);
+
 }
        
   
@@ -54,6 +67,8 @@ public getUserByName(userName: string){
     this.nbRecetteConnected = 0;
     console.log("Auth:" + this.isAuth);
   }
+
+
     
     
 }

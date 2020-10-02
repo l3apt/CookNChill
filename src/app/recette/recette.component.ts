@@ -23,10 +23,15 @@ export class RecetteComponent implements OnInit {
   @Input() imgURL: string;
   @Input() cooker: string;
 
+  public afficheCasserole : boolean[]; 
+
   constructor(private recetteService: RecetteService) { }
 
   ngOnInit(): void {
+    
   }
+
+  
 
 }
 

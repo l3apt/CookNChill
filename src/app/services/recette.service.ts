@@ -22,7 +22,7 @@ export class RecetteService{
 	}
 	
 	 
-	private recettes: Recette[] =[ 
+	public recettes: Recette[] =[ 
 	  {
 	    id : 0,
 	    recetteName : 'Lasagnes',
