@@ -9,6 +9,7 @@ export class Recette {
     public recetteTime: string, // temps de réalisation de la recette
     public recetteAddDate: string, // date d'ajout de la recette
     public nbPersonne: number, // nombre de personne pour lequel est faite la recette
+    public cookerName: string, // nom de l'utilisateur qui a publié la recette
     public Ingredients?: Ingredient[], // liste des ingrédients
     public Instructions?: Instruction[], //liste des instructions de la recette
     public imgURL?: string //URL de la photo de présentation de la recette 

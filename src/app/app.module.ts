@@ -24,7 +24,7 @@ import { AuthComponent } from './auth/auth.component';
 
 //import du FileUploader
 import { FileUploadModule } from 'ng2-file-upload';
-import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
+
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -35,8 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     EditRecetteComponent,
     RecetteViewComponent,
     SingleRecetteComponent,
-    AuthComponent,
-    ImageUploaderComponent
+    AuthComponent
   ],
   imports: [
     AppRoutingModule,

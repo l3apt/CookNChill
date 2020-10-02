@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthService } from './services/auth.service';
 
 import * as firebase from 'firebase';
 
@@ -13,7 +14,7 @@ import * as firebase from 'firebase';
 export class AppComponent {
   title = 'CookNChill';
 
-  constructor(){
+  constructor(public authservice: AuthService){
   	 var firebaseConfig = {
 	    apiKey: "AIzaSyBDbAWV7tCS0_4vVaVWUDfavlsat_FifHM",
 	    authDomain: "cooknchill-eec23.firebaseapp.com",

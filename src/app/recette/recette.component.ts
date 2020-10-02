@@ -21,6 +21,7 @@ export class RecetteComponent implements OnInit {
   @Input() Ingredients: any[];
   @Input() Instructions: any[];
   @Input() imgURL: string;
+  @Input() cooker: string;
 
   constructor(private recetteService: RecetteService) { }
 

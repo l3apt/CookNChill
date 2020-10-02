@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { RecetteService } from '../services/recette.service';
+import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -30,6 +31,7 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
 
 
   constructor(private recetteService: RecetteService,
+              private authservice: AuthService,
               private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute) { }
@@ -158,6 +160,7 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
         formValue['recetteTime'],
         new Date().toDateString(),
         formValue['nbPersonne'],
+        this.authservice.userConnected,
         Ingredients,
         Instructions,
         ''

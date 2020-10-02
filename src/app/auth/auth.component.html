@@ -21,6 +21,14 @@
 	</button>
 </form>
 
+<div *ngIf="authStatus">
+	<p>
+		<strong>Nom: </strong>{{this.authService.userConnected}}
+	</p>
+	<p>
+		<strong>Nombre de recettes publiées: </strong>{{this.authService.nbRecetteConnected}}
+	</p>
+</div>
 
 <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se déconnecter</button>
 

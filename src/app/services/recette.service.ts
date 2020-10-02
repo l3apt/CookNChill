@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {RecetteViewComponent} from '../recette-view/recette-view.component';
 import { Recette } from '../models/Recette.model';
+import { AuthService } from '../services/auth.service';
 
 import * as firebase from 'firebase';
 
@@ -16,7 +17,7 @@ export class RecetteService{
 	
 	recetteSubject = new Subject<any[]>();
 
-	constructor(){
+	constructor(private authService: AuthService){
 		this.getRecette();
 	}
 	
@@ -30,6 +31,7 @@ export class RecetteService{
 	    recetteTime : '00:15',
 	    recetteAddDate : '08/09/2020',
 	    nbPersonne : 6,
+      cookerName: 'Eva',
 	    Ingredients: [{
 		    	quantity: 2,
 		    	unitIngredient: '',
@@ -62,6 +64,7 @@ export class RecetteService{
 	    recetteTime : '00:20',
 	    recetteAddDate : '08/09/2020',
 	    nbPersonne : 4,
+      cookerName: 'Baptiste',
 	    Ingredients: [
 	    	{
 		    	quantity: 200,
@@ -99,12 +102,17 @@ export class RecetteService{
 
   addRecette(recette: Recette) {
     recette.recetteAddDate = new Date().toDateString();
+
+    //MAJ stats user
+    //this.authService.getUserByUserName(this.authService.userConnected).nbRecetteConnected++;
+    recette.cookerName = this.authService.userConnected;
+
     if (this.recettes.length == 0) {
     	recette.id = 0;
     }
     else {
     	recette.id = this.recettes[(this.recettes.length - 1)].id + 1;
-	}
+	  }
 
     this.recettes.push(recette);
     this.saveRecettes();
@@ -159,6 +167,18 @@ getRecette() {
         }
       }
     );*/
+    const urlToDelete = this.recettes[recetteIndexToRemove].imgURL;
+    if(urlToDelete) {
+      const storageRef = firebase.storage().refFromURL(urlToDelete);
+      storageRef.delete().then(
+        () => {
+          console.log('Photo removed!');
+        },
+        (error) => {
+          console.log('Could not remove photo! : ' + error);
+        }
+      );
+    }
     this.recettes.splice(recetteIndexToRemove, 1);
     this.saveRecettes();
     this.emitRecetteSubject();
@@ -186,6 +206,15 @@ getRecette() {
       }
     );
 }
+
+getUserByUserName(userName: string){
+  for (var i=0; i < this.authService.users.length; i++){
+    if ((this.authService.users[i].userName == userName)){
+      return this.authService.users[i];
+      }
+  }
+ }
+
 
 
 }
