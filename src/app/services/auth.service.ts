@@ -1,7 +1,9 @@
 import { User } from '../models/User.model';
-
+import { Subject } from 'rxjs/Subject';
 
 export class AuthService {
+
+ UserSubject = new Subject<any[]>();
 
 
 
@@ -9,7 +11,7 @@ export class AuthService {
   isReset = false; // indique si le formulaire d'authentification a été rechargée suite à un mauvais MdP
   
   public userConnected: string;
-  public nbRecetteConnected: number;
+  public indexUserConnected: number;
 
   public users: User[] =[ 
     {
@@ -24,6 +26,10 @@ export class AuthService {
     }
   ]; 
 
+  emitUserSubject(){
+      this.UserSubject.next(this.users.slice());
+    }
+
 
   signIn(userNameEntered: string, userPasswordEntered: string) {
   
@@ -32,7 +38,7 @@ export class AuthService {
   		this.isAuth = true;
     	console.log("Auth:" + this.isAuth);
       this.userConnected = this.users[i].userName;
-      this.nbRecetteConnected = this.users[i].nbRecette;
+      this.indexUserConnected = i;
     	return true;
     	}
     
@@ -64,11 +70,8 @@ public getIdUserByName(userName: string){
   signOut() {
     this.isAuth = false;
     this.userConnected = '';
-    this.nbRecetteConnected = 0;
     console.log("Auth:" + this.isAuth);
   }
-
-
     
     
 }

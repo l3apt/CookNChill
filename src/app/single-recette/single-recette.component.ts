@@ -58,6 +58,7 @@ export class SingleRecetteComponent implements OnInit {
     
     //init du formulaire 
     this.initForm();
+    //this.recetteForm.patchValue({ nameIngredients: this.recupRecette.Ingredients });
 	}
 
 //init champs du formulaire 
@@ -138,6 +139,8 @@ getIngredientsName(): FormArray {
       this.recupRecette.imgURL = this.fileUrl;
     }
 
+
+
   	this.recetteService.modifyRecette(this.id,this.recupRecette);
   	
     this.router.navigate(['/recette-view']);
@@ -149,7 +152,7 @@ getIngredientsName(): FormArray {
       if (idRecetteToDelete == this.recetteService.recettes[i].id){
           var indexRecetteToDelete = i;
       }
- }
+    }
 
     this.recetteService.removeRecette(indexRecetteToDelete);
     this.router.navigate(['/recette-view']);

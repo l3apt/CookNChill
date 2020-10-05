@@ -8,6 +8,8 @@
 	    <option value="Plat">Plat</option>
         <option value="Patisserie">Patisserie</option>
         <option value="Apéritif">Apéritif</option>
+        <option value="Entrée">Entrée</option>
+        <option value="Brioche">Brioche</option>
     </select>
 </div>
 
@@ -48,14 +50,14 @@
 			
 			<li  *ngFor ="let ingredients of recupRecette.Ingredients"> 
 				<div id ="ingredients">
-					<input type="text" name="Temps" class="form-control" 
-							[ngModel] = "ingredients.nameIngredient" >
+					<input type="text" name="nom" class="form-control" 
+							[(ngModel)] = "ingredients.nameIngredient" >
 
-					<input  type="text" name="Temps" class="form-control" 
-							[ngModel] = "ingredients.quantity">
+					<input  type="text" name="quantité" class="form-control" 
+							[(ngModel)] = "ingredients.quantity">
 
 		
-					<select class="form-control" [ngModel] = "ingredients.unitIngredient">
+					<select class="form-control" [(ngModel)] = "ingredients.unitIngredient">
 			              <option value="">Pas d'unité</option>
 			              <option value="g">g</option>
 			              <option value="Kg">Kg</option>
@@ -79,7 +81,7 @@
 			<li id = "instructions" *ngFor ="let instruction of recupRecette.Instructions"> 
 				<div>{{ instruction.step }}:</div> 
 				<input type="text" name="Temps" class="form-control" 
-						[ngModel] = "instruction.detailInstruction" >
+						[(ngModel)] = "instruction.detailInstruction" >
 			</li>
 		</ul>
 

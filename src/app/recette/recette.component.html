@@ -1,29 +1,39 @@
 <li class = "list-group-item">
 	<!-- <h3 class = "recette-Name"> {{recetteName}} </h3> -->
 	<article class="box excerpt">
-	<div id ="ingredients">
-		<div id = "gauche">
-			<header>
+		<header>
 				<span class="date">{{recetteCategory}}</span>
-				<h1 id="logo"> {{ recetteName}}</h1> <h4>by {{cooker}}</h4> 
-			</header>
-			<h4>
-				<p>Catégorie: {{recetteCategory}}</p>
+				
+		</header>
+		<div class="header">
+			<h1> {{ recetteName }}</h1>
+			<h5 *ngIf = "cooker" >by {{cooker}}</h5> 
+		</div>
+	<div id ="ingredients">
+		
+		<div id = "gauche">
+			<h5>
 				<p>Dificulté de réalisation: {{recetteDificulty}} </p>		
 				<p>Temps de réalisation: {{recetteTime}}</p>
 				<p>Ingrédients pour {{nbPersonne}} personnes: </p>
-				<ul>
-					<li *ngFor ="let ingredients of Ingredients"> 
-						{{ ingredients.quantity }} {{ ingredients.unitIngredient }} {{ ingredients.nameIngredient }}
-					</li>
-				</ul>
+			</h5>
+			<h6>
+					<ul>
+						<li *ngFor ="let ingredients of Ingredients"> 
+							{{ ingredients.quantity }} {{ ingredients.unitIngredient }} {{ ingredients.nameIngredient }}
+						</li>
+					</ul>
+			</h6>
+			<h5>
 				<p>Recette: </p>
+			</h5>
+			<h6>
 				<ul>
 					<li *ngFor ="let instruction of Instructions"> 
 						{{ instruction.step }}: {{ instruction.detailInstruction }}
 					</li>
 				</ul>
-			</h4>
+			</h6>
 
 		</div>
 		<!--
@@ -35,7 +45,7 @@
 	</div>
 	<div class = "footer">
 			<a [routerLink] = "[id]"> Modifier </a>  
-			<p>Date d'ajout: {{recetteAddDate}}</p>
+			<h6>Date d'ajout: {{recetteAddDate}}</h6>
 	</div>
 
 	</article>

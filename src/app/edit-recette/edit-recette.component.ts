@@ -170,10 +170,7 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
     if(this.fileUrl && this.fileUrl !== '') {
       newRecette.imgURL = this.fileUrl;
     }
-    //increment stats user
-    const indexUser = this.authservice.getIdUserByName(this.authservice.userConnected);
-    this.authservice.users[indexUser].nbRecette++;
-     console.log(this.authservice.users[indexUser].nbRecette);
+
 
     this.recetteService.addRecette(newRecette);
     this.router.navigate(['/recette-view']);

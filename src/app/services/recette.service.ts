@@ -64,7 +64,7 @@ export class RecetteService{
 	    recetteTime : '00:20',
 	    recetteAddDate : '08/09/2020',
 	    nbPersonne : 4,
-      cookerName: 'Baptiste',
+      cookerName: 'Bapt',
 	    Ingredients: [
 	    	{
 		    	quantity: 200,
@@ -90,6 +90,21 @@ export class RecetteService{
     	this.recetteSubject.next(this.recettes.slice());
   	}
 
+
+  // ACTUALISATION DU NB DE RECETTE REALISEES PAR CHAQUE UTILISATEUR
+  initNbRecette(){
+    var cpt =0;
+    for (var indexUser = 0; indexUser < this.authService.users.length; indexUser++){
+      for(var indexRecette = 0; indexRecette < this.recettes.length;indexRecette++){
+        if (this.recettes[indexRecette].cookerName == this.authService.users[indexUser].userName){
+          cpt++;
+        }
+      }
+      this.authService.users[indexUser].nbRecette = cpt;
+      cpt = 0;
+    }
+  }
+
 	// récupération de la recette par son num id
 	getRecetteById(id: number){
     	const recette = this.recettes.find(
@@ -107,23 +122,34 @@ export class RecetteService{
     //this.authService.getUserByUserName(this.authService.userConnected).nbRecetteConnected++;
     recette.cookerName = this.authService.userConnected;
 
+    //création de l'id
     if (this.recettes.length == 0) {
     	recette.id = 0;
     }
     else {
-    	recette.id = this.recettes[(this.recettes.length - 1)].id + 1;
+      var idToSet = 0;
+      for (var index = 0; index < this.recettes.length; index++){
+        if (idToSet < this.recettes[index].id){
+          idToSet = this.recettes[index].id;
+        }
+      }
+    	recette.id = idToSet + 1;
 	  }
-
+    console.log('recette avec id: ' + recette.id + 'a été ajouté');
     this.recettes.push(recette);
     this.saveRecettes();
     this.emitRecetteSubject();
+
   }
 
   modifyRecette(id: number, modifiedRecette: Recette){
 
-  	this.recettes.splice(id,1,modifiedRecette);
+    const index = this.recetteIndexById(id);
+
+    this.recettes.splice(index,1,modifiedRecette);
   	this.saveRecettes();
   	this.emitRecetteSubject();
+    console.log('Recette id :' + id + ' index: '+ index + ' modified');
   }
 
 saveRecettes() {
@@ -213,6 +239,14 @@ getUserByUserName(userName: string){
       return this.authService.users[i];
       }
   }
+ }
+
+ recetteIndexById(id: number){
+   for (var index = 0; index < this.recettes.length; index++){
+      if (this.recettes[index].id == id){
+        return index;
+      }
+    }
  }
 
 
