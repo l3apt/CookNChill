@@ -21,7 +21,6 @@ export class RecetteService{
 		this.getRecette();
 	}
 	
-	 
 	public recettes: Recette[] =[ 
 	  {
 	    id : 0,

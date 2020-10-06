@@ -61,6 +61,10 @@ export class SingleRecetteComponent implements OnInit {
     //this.recetteForm.patchValue({ nameIngredients: this.recupRecette.Ingredients });
 	}
 
+  ngOnDestroy(){
+    this.recetteSubscription.unsubscribe();
+  }
+
 //init champs du formulaire 
   initForm() {
     this.recetteForm = this.formBuilder.group({

@@ -75,6 +75,10 @@ export class AuthComponent implements OnInit {
     this.router.navigate(['recette-view']);
   }
 
+  ngOnDestroy(){
+    this.UserSubscription.unsubscribe();
+  }
+
 
 
 
