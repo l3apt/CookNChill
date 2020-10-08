@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {RecetteViewComponent} from '../recette-view/recette-view.component';
 import { Recette } from '../models/Recette.model';
+import { Ingredient } from '../models/Ingredient.model';
 import { AuthService } from '../services/auth.service';
 
 import * as firebase from 'firebase';
@@ -247,6 +248,37 @@ getUserByUserName(userName: string){
       }
     }
  }
+
+  updateIngredients(nbPersonne: number, nbPersonneVar: number, varIngredients: Ingredient[], ingredients: Ingredient[]){
+    
+    console.log("AVANT");
+    console.log('ingredients: '+ ingredients[0].quantity);
+    if (varIngredients){
+      console.log('varIngredients: '+varIngredients[0].quantity);
+    }
+    console.log('nbPersonneVar: ' +nbPersonneVar);
+    console.log('nbPersonne: ' + nbPersonne);
+
+    for (var index = 0; index < ingredients.length; index++ ){
+      console.log('varIngredients calcul AVANT: ' + varIngredients[index].quantity);
+      console.log('ingredients calcul AVANT: ' + ingredients[index].quantity);
+      
+      varIngredients[index].quantity = ( nbPersonneVar/nbPersonne) * ingredients[index].quantity;   
+
+      console.log('varIngredients calcul APRES: ' + varIngredients[index].quantity);
+      console.log('ingredients calcul APRES: ' + ingredients[index].quantity);
+    }
+
+    console.log("APRES");
+    console.log('ingredients: '+ ingredients[0].quantity);
+    console.log('varIngredients: '+varIngredients[0].quantity);
+    console.log('nbPersonneVar: ' +nbPersonneVar);
+    console.log('nbPersonne: ' + nbPersonne);
+
+    return varIngredients;
+  } 
+
+
 
 
 

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RecetteService } from '../services/recette.service';
 import { Recette } from '../models/Recette.model';
+import { Ingredient } from '../models/Ingredient.model';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
@@ -21,7 +22,7 @@ export class RecetteComponent implements OnInit {
   @Input() recetteTime: string ;
   @Input() recetteAddDate: string;
   @Input() nbPersonne: number;
-  @Input() Ingredients: any[];
+  @Input() Ingredients: Ingredient[];
   @Input() Instructions: any[];
   @Input() imgURL: string;
   @Input() cooker: string;
@@ -31,7 +32,15 @@ export class RecetteComponent implements OnInit {
   
   public nbPersonneVar: number;  //entier variant par formulaire pour changer la quantité d'ingredients 
                                  // en fct su nb de personnes souhaité
-  public varIngredients: any[]; //quantité des ingrédients variable
+  public varIngredients: Ingredient[] = [
+    {
+      quantity: 0,
+      unitIngredient: '',
+      nameIngredient: ''
+      
+    }
+  ]; //quantité des ingrédients variable
+ 
 
 
   constructor(public recetteService: RecetteService) {
@@ -41,26 +50,44 @@ export class RecetteComponent implements OnInit {
   ngOnInit(): void {
 
       this.nbPersonneVar = this.nbPersonne;
-      console.log('nbPersonneVar init: ' + this.nbPersonneVar);
-      this.varIngredients = this.Ingredients;    
+      this.cloneIngredients();
   }
 
-  updateIngredients(){
-    for (var index = 0; index < this.varIngredients.length; index++ ){
+  // copie des Ingredients dans la variable varIngredients
+  cloneIngredients(){
+       
+        for (var index = 0; index < this.Ingredients.length; index++){
+            const IngredientObject = {
+              quantity: 0,
+              unitIngredient: '',
+              nameIngredient: ''
+            };
+            IngredientObject.quantity = this.Ingredients[index].quantity;
+            IngredientObject.unitIngredient = this.Ingredients[index].unitIngredient;
+            IngredientObject.nameIngredient = this.Ingredients[index].nameIngredient;
 
-      console.log('nbPersonneVar fct:'+ this.nbPersonneVar);
-      console.log('var avant:'+ this.varIngredients[index].quantity);
-      console.log('fixe avant:'+ this.Ingredients[index].quantity);
-      
-      this.varIngredients[index].quantity = ( this.nbPersonneVar * this.Ingredients[index].quantity)
-       / this.nbPersonne;
-      
-      console.log('var après:'+ this.varIngredients[index].quantity);
-      console.log('fixe après:'+ this.Ingredients[index].quantity);
+            
+            if (index == 0){
+              this.varIngredients.splice(index,1,IngredientObject);
+            }
+            else{
+              this.varIngredients.push(IngredientObject);
+            }
+            
+        } 
+  }
 
+
+// UPDATE de la quantité des ingredients lors d'un changement de valeur de nbPersonneVar
+  onUpdateIngredients(){
+ 
+    for (var index = 0; index < this.Ingredients.length; index++ ){
+      this.varIngredients[index].quantity = (this.nbPersonneVar/ this.nbPersonne) * this.Ingredients[index].quantity;   
     }
+
   }
 
+// Demande de modif du nombre de personne (modif des ingredients affichés)
   onChangeNbPersonne(){
     if (this.changeNbPersonne)
       this.changeNbPersonne = false;

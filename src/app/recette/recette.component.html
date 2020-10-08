@@ -23,7 +23,7 @@
 				</p>
 			</h5>
 			<input type="range" class="custom-range" min="0" max="10" id="customRange2"
-				[(ngModel)] = "nbPersonneVar" (change) = "this.updateIngredients()" *ngIf ="changeNbPersonne">
+				[(ngModel)] = "nbPersonneVar" (change) = "this.onUpdateIngredients()" *ngIf ="changeNbPersonne">
 			<h6>
 					<ul>
 						<li *ngFor ="let ingr of this.varIngredients"> 
