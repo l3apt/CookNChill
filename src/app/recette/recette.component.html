@@ -16,9 +16,10 @@
 				<p>Dificulté de réalisation: {{recetteDificulty}} </p>		
 				<p>Temps de réalisation: {{recetteTime}}</p>
 				<p>Ingrédients pour {{nbPersonneVar}} personnes:
-					<button type="button" class="btn btn-secondary btn-sm" data-toggle="changeNbPersonne" aria-pressed="false" autocomplete="off" (click) = "onChangeNbPersonne()">
-					  Changer
-					</button> 
+					
+					<a (click) = "onChangeNbPersonne()" class = "nbPersonne-button" width = "50px">
+						<img src="/assets/img/plate.png" width = "50 px"/>
+					</a>
         
 				</p>
 			</h5>
