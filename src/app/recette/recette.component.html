@@ -12,26 +12,22 @@
 	<div id ="ingredients">
 		
 		<div id = "gauche">
-			<h5>
 				<p>Dificulté de réalisation: {{recetteDificulty}} </p>		
 				<p>Temps de réalisation: {{recetteTime}}</p>
 				<p>Ingrédients pour {{nbPersonneVar}} personnes:
-					
+
 					<a (click) = "onChangeNbPersonne()" class = "nbPersonne-button" width = "50px">
 						<img src="/assets/img/plate.png" width = "50 px"/>
 					</a>
         
 				</p>
-			</h5>
 			<input type="range" class="custom-range" min="0" max="10" id="customRange2"
 				[(ngModel)] = "nbPersonneVar" (change) = "this.onUpdateIngredients()" *ngIf ="changeNbPersonne">
-			<h6>
 					<ul>
 						<li *ngFor ="let ingr of this.varIngredients"> 
 							{{ ingr.quantity | number: '1.0-1' }} {{ ingr.unitIngredient }} {{ ingr.nameIngredient }}
 						</li>
 					</ul>
-			</h6>
 			<h5>
 				<p>Recette: </p>
 			</h5>
@@ -44,16 +40,12 @@
 			</h6>
 
 		</div>
-		<!--
-		<div id = "droite">
-			<img src="/assets/img/img{{id}}.png" width = "300 px"/>
-		</div>
-	-->
+
 		<img style="max-width:400px;" *ngIf="imgURL" [src]="imgURL">
 	</div>
 	<div class = "footer">
 			<a [routerLink] = "[id]"> Modifier </a>  
-			<h6>Date d'ajout: {{recetteAddDate | date:'fullDate': 'fr'}}</h6>
+			<p>Date d'ajout: {{recetteAddDate | date:'fullDate': 'fr'}}</p>
 	</div>
 
 	</article>

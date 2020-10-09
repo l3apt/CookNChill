@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Montserrat:wght@100&display=swap');
 
 .liste-ingredient .champ-ingredient {
   display: flex;
@@ -55,4 +56,9 @@
 .nbPersonne-button:hover {
   background-color: #e5e5e5;
   cursor: pointer;
+}
+
+p {
+  font-family: 'Lobster', cursive;
+  size: 50px;
 }
