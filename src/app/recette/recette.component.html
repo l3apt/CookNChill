@@ -6,12 +6,12 @@
 				
 		</header>
 		<div class="header">
-			<h1> {{ recetteName }}</h1>
+			<h1 class ="font1"> {{ recetteName }}</h1>
 			<h5 *ngIf = "cooker" >by {{cooker}}</h5> 
 		</div>
 	<div id ="ingredients">
 		
-		<div id = "gauche">
+		<div id = "gauche" class ="font1">
 				<p>Dificulté de réalisation: {{recetteDificulty}} </p>		
 				<p>Temps de réalisation: {{recetteTime}}</p>
 				<p>Ingrédients pour {{nbPersonneVar}} personnes:
@@ -29,22 +29,22 @@
 						</li>
 					</ul>
 			<h5>
-				<p>Recette: </p>
+				<p class = "font1">Recette: </p>
 			</h5>
-			<h6>
+			<div class = "font1">
 				<ul>
 					<li *ngFor ="let instruction of Instructions"> 
 						{{ instruction.step }}: {{ instruction.detailInstruction }}
 					</li>
 				</ul>
-			</h6>
+			</div>
 
 		</div>
 
 		<img style="max-width:400px;" *ngIf="imgURL" [src]="imgURL">
 	</div>
 	<div class = "footer">
-			<a [routerLink] = "[id]"> Modifier </a>  
+			<a [routerLink] = "[id]" class = "font1">Modifier </a>  
 			<p>Date d'ajout: {{recetteAddDate | date:'fullDate': 'fr'}}</p>
 	</div>
 
