@@ -1,5 +1,5 @@
 import { User } from '../models/User.model';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 export class AuthService {
 
@@ -16,14 +16,25 @@ export class AuthService {
   public users: User[] =[ 
     {
       userName : 'Evita',
-      password : '1234',
+      password : 'PALLICER',
       nbRecette : 0
     }, 
     {
       userName : 'Bapt',
       password : 'www',
       nbRecette : 0
+    },
+    {
+      userName : 'Mathilde',
+      password : 'GRILLERE',
+      nbRecette : 0
+    },
+    {
+      userName : 'Françoise',
+      password : 'CHIRON',
+      nbRecette : 0
     }
+
   ]; 
 
   emitUserSubject(){
@@ -36,7 +47,6 @@ export class AuthService {
   for (var i=0; i < this.users.length; i++){
   	if ((this.users[i].userName == userNameEntered) && (this.users[i].password == userPasswordEntered) ){
   		this.isAuth = true;
-    	console.log("Auth:" + this.isAuth);
       this.userConnected = this.users[i].userName;
       this.indexUserConnected = i;
     	return true;

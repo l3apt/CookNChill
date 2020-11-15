@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { RecetteService } from './recette.service';
 import { Injectable } from '@angular/core';
@@ -27,12 +27,8 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     
-
-
     if(this.authService.isAuth) {
-      if (this.recetteService.recettes[this.indexRecette].cookerName == this.authService.userConnected){
-        return true;  
-      }
+        return true;   
     } 
     else {
       this.router.navigate(['/auth']);

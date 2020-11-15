@@ -33,8 +33,6 @@ export class AuthComponent implements OnInit {
     this.authStatus = this.authService.isAuth;
     
     this.recetteService.initNbRecette();
-    console.log('OnInit Eva:' + this.authService.users[0].nbRecette);
-    console.log('OnInit Bapt:' + this.authService.users[1].nbRecette);
 
     this.UserSubscription = this.authService.UserSubject.subscribe(
       (users: any[]) => {
@@ -56,7 +54,6 @@ export class AuthComponent implements OnInit {
 
          if (this.AuthIsOk) {
            
-            console.log('Sign in successful!');
             this.authService.isReset = false;
              // redirection
             this.router.navigate(['recette-view']);

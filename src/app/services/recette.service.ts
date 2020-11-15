@@ -1,7 +1,7 @@
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import {RecetteViewComponent} from '../recette-view/recette-view.component';
+import { RecetteViewComponent } from '../recette-view/recette-view.component';
 import { Recette } from '../models/Recette.model';
 import { Ingredient } from '../models/Ingredient.model';
 import { AuthService } from '../services/auth.service';

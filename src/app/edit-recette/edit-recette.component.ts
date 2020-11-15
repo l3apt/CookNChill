@@ -20,7 +20,6 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
 
  recettes: any[];
  recetteSubscription: Subscription;
- userSubscription: Subscription;
  recetteForm: FormGroup;
  
  
@@ -71,7 +70,6 @@ export class EditRecetteComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.recetteSubscription.unsubscribe();
-    this.userSubscription.unsubscribe();
   }
 
     //----- METHODE REACTIVE ------
