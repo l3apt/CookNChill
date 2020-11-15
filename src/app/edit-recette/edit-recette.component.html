@@ -1,4 +1,5 @@
-<div class="col-sm-8 col-sm-offset-2">
+<div class = "formulaire">
+
   <form [formGroup]="recetteForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="recetteName">Nom de la recette</label>
@@ -79,6 +80,7 @@
               <option value="g">g</option>
               <option value="Kg">Kg</option>
               <option value="L">L</option>
+              <option value="cL">cL</option>
               <option value="mL">mL</option>
               <option value="cuillère à soupe">cuillère à soupe</option>
               <option value="cuillère à café">cuillère à café</option>
@@ -130,4 +132,5 @@
 
     <button type="submit" class="btn btn-primary" [disabled] = "recetteForm.invalid || fileIsUploading">    Soumettre</button>
   </form>
+
 </div>
