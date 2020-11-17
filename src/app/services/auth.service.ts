@@ -33,6 +33,11 @@ export class AuthService {
       userName : 'Françoise',
       password : 'CHIRON',
       nbRecette : 0
+    },
+    {
+      userName : 'Nadine',
+      password : 'PALLICER',
+      nbRecette : 0
     }
 
   ]; 
